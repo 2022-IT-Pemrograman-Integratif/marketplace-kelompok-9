@@ -175,7 +175,7 @@ token
 `post`
 
 ### endpoint
-`.../api/users/confirm_order.php`
+`.../api/users/finish_order.php`
 
 ### URL
 `https://pi-kel9.000webhostapp.com/getix/api/finish_order.php`
