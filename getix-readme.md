@@ -44,7 +44,7 @@ tidak ada
 `https://pi-kel9.000webhostapp.com/getix/api/login.php`
 
 ### auth
-token 
+tidak ada 
 
 ### parameter 
 {
