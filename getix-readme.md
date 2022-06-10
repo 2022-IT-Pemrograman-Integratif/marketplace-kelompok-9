@@ -165,7 +165,7 @@ token
 }
 
 ### output postman
-![](getix/kofirmasi-order.jpg)
+![](getix/konfirmasi-order.jpg)
 
 
 
