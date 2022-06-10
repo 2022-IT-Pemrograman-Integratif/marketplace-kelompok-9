@@ -80,7 +80,7 @@ token
 token
 
 ### output postman
-![](getix/tambah tiket.jpg)
+![](getix/tambah-tiket.jpg)
 
 
 
@@ -165,7 +165,7 @@ token
 }
 
 ### output postman
-![](getix/kofirmasi order.jpg)
+![](getix/kofirmasi-order.jpg)
 
 
 
@@ -197,6 +197,4 @@ token
 
 }
 
-### output postman
-![](getix/acc order.jpg)
 
