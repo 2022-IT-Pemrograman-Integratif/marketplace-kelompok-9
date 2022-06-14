@@ -198,6 +198,6 @@ token
 }
 
 ### output postman
-![image.png]({acc produk.png}]
+![image](https://github.com/2022-IT-Pemrograman-Integratif/marketplace-kelompok-9/blob/main/getix/acc%20produk.png)
 
 
