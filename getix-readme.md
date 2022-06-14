@@ -198,6 +198,6 @@ token
 }
 
 ### output postman
-![](getix/acc produk.png)
+![image.png]({acc produk.png}]
 
 
