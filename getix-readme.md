@@ -197,4 +197,7 @@ token
 
 }
 
+### output postman
+![](getix/acc produk.png)
+
 
