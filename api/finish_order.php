@@ -98,7 +98,7 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "password"=>"payPhone"
                 );
                 $data_login = json_encode($data_login);
-                $output = curl_login('https://kecana.herokuapp.com/login', $data_login);
+                $output = curl_login_kcn('https://kecana.herokuapp.com/login', $data_login);
                 $jwt = $output;
                 
                 $data = array(
@@ -106,8 +106,8 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "nohp"=>$phone,
                     "nominaltransfer"=>(int)$total
                 );
-                $transfer_kcn = curl_transfer('https://kecana.herokuapp.com/transfer', json_encode($data), $jwt);
-                echo($transfer_kcn);
+                $transfer_kcn = curl_transfer_kcn('https://kecana.herokuapp.com/transfer', json_encode($data), $jwt);
+                //echo($transfer_kcn);
                 $query = "UPDATE statuspengiriman set status='Pesanan selesai' WHERE pembeli='$pembeli' AND tiket='$tiket' AND jumlah='$jumlah'";
                 $result = mysqli_query($conn, $query);
                 if($result){
@@ -127,7 +127,7 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "password"=>"payPhone"
                 );
                 $data_login = json_encode($data_login);
-                $output = curl_login('https://gallecoins.herokuapp.com/api/users', $data_login);
+                $output = curl_login_galle('https://gallecoins.herokuapp.com/api/users', $data_login);
                 $jwt = json_decode($output,true);
                 $jwt = $jwt['token'];
                 
@@ -136,8 +136,8 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "phone"=>$telepon,
                     "description"=>"Payment marketplace"
                 );
-                $transfer_galle = curl_transfer('https://gallecoins.herokuapp.com/api/transfer', json_encode($data), $jwt);
-                echo($transfer_galle);
+                $transfer_galle = curl_transfer_galle('https://gallecoins.herokuapp.com/api/transfer', json_encode($data), $jwt);
+                //echo($transfer_galle);
                 $query = "UPDATE statuspengiriman set status='Pesanan selesai' WHERE pembeli='$pembeli' AND tiket='$tiket' AND jumlah='$jumlah'";
                 $result = mysqli_query($conn, $query);
                 if($result){
@@ -157,16 +157,16 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "password"=>"payPhone"
                 );
                 $data_login = json_encode($data_login);
-                $output = curl_login('https://e-money-kelompok5.herokuapp.com/cuanind/user/login', $data_login);
+                $output = curl_login_cuan('https://e-money-kelompok5.herokuapp.com/cuanind/user/login', $data_login);
                 $jwt = $output;
                 
                 $data = array(
                     "amount"=>$jumlah,
-                    "target"=>$penerima
+                    "target"=>$pembeli
                 );
-                $transfer_cuan = curl_transfer('https://e-money-kelompok5.herokuapp.com/cuanind/transfer', json_encode($data), $jwt);
-                echo($transfer_cuan);
-                $query = "UPDATE statuspengiriman set status='Pesanan selesai' WHERE pembeli='$pembeli' AND produk='$produk' AND jumlah='$jumlah'";
+                $transfer_cuan = curl_transfer_cuan('https://e-money-kelompok5.herokuapp.com/cuanind/transfer', json_encode($data), $jwt);
+                //echo($transfer_cuan);
+                $query = "UPDATE statuspengiriman set status='Pesanan selesai' WHERE pembeli='$pembeli' AND tiket='$tiket' AND jumlah='$jumlah'";
                 $result = mysqli_query($conn, $query);
                 if($result){
                     http_response_code(200);
@@ -185,7 +185,7 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "password"=>"payPhone"
                 );
                 $data_login = json_encode($data_login);
-                $output = curl_login('https://moneyz-kelompok6.herokuapp.com/api/login', $data_login);
+                $output = curl_login_moneyz('https://moneyz-kelompok6.herokuapp.com/api/login', $data_login);
                 $jwt = json_decode($output, true);
                 $jwt = $jwt["token"];
                 
@@ -193,8 +193,8 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "nominal"=>$total,
                     "nomortujuan"=>$telepon
                 );
-                $transfer_moneyz = curl_transfer('https://moneyz-kelompok6.herokuapp.com/api/user/transfer', json_encode($data), $jwt);
-                echo($transfer_moneyz);
+                $transfer_moneyz = curl_transfer_moneyz('https://moneyz-kelompok6.herokuapp.com/api/user/transfer', json_encode($data), $jwt);
+                //echo($transfer_moneyz);
                 $query = "UPDATE statuspengiriman set status='Pesanan selesai' WHERE pembeli='$pembeli' AND tiket='$tiket' AND jumlah='$jumlah'";
                 $result = mysqli_query($conn, $query);
                 if($result){
@@ -214,7 +214,7 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "password"=>"payPhone"
                 );
                 $data_login = json_encode($data_login);
-                $output = curl_login('https://payfresh.herokuapp.com/api/login', $data_login);
+                $output = curl_login_payfresh('https://payfresh.herokuapp.com/api/login', $data_login);
                 $jwt = json_decode($output, true);
                 $jwt = $jwt["token"];
                 
@@ -222,8 +222,8 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "amount"=>$total,
                     "phone"=>$telepon
                 );
-                $transfer_payfresh = curl_transfer('https://payfresh.herokuapp.com/api/user/transfer/44', json_encode($data), $jwt);
-                echo($transfer_payfresh);
+                $transfer_payfresh = curl_transfer_payfresh('https://payfresh.herokuapp.com/api/user/transfer/44', json_encode($data), $jwt);
+                //echo($transfer_payfresh);
                 $query = "UPDATE statuspengiriman set status='Pesanan selesai' WHERE pembeli='$pembeli' AND tiket='$tiket' AND jumlah='$jumlah'";
                 $result = mysqli_query($conn, $query);
                 if($result){
@@ -253,8 +253,8 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "tujuan"=>$telepon,
                     "jumlah"=>$total
                 );
-                $transfer_padpay = curl('https://mypadpay.xyz/padpay/api/transaksi.php/73', json_encode($data), $jwt);
-                echo($transfer_padpay);
+                $transfer_padpay = curl_transfer_padpay('https://mypadpay.xyz/padpay/api/transaksi.php/73', json_encode($data), $jwt);
+                //echo($transfer_padpay);
                 $query = "UPDATE statuspengiriman set status='Pesanan selesai' WHERE pembeli='$pembeli' AND tiket='$tiket' AND jumlah='$jumlah'";
                 $result = mysqli_query($conn, $query);
                 if($result){
@@ -283,7 +283,7 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     'emoney'=>'payPhone'
                 );
                 $transfer_payphone = curl_transfer_buski('http://fp-payphone.herokuapp.com/public/api/transfer', $jwt, $data);
-                echo($transfer_payphone);
+                //echo($transfer_payphone);
                 $query = "UPDATE statuspengiriman set status='Pesanan selesai' WHERE pembeli='$pembeli' AND tiket='$tiket' AND jumlah='$jumlah'";
                 $result = mysqli_query($conn, $query);
                 if($result){
@@ -303,7 +303,7 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "password"=>"payPhone"
                 );
                 $data_login = json_encode($data_login);
-                $output = curl_login('https://ecoin10.my.id/api/masuk', $data_login);
+                $output = curl_login_ecoin('https://ecoin10.my.id/api/masuk', $data_login);
                 $jwt = json_decode($output, true);
                 $jwt = $jwt["accessToken"];
                 
@@ -312,8 +312,8 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "phone2"=>$telepon,
                     "description"=>"Payment marketplace"
                 );
-                $transfer_ecoin = curl_transfer('https://ecoin10.my.id/api/transfer', json_encode($data), $jwt);
-                echo($transfer_ecoin);
+                $transfer_ecoin = curl_transfer_ecoin('https://ecoin10.my.id/api/transfer', json_encode($data), $jwt);
+                //echo($transfer_ecoin);
                 $query = "UPDATE statuspengiriman set status='Pesanan selesai' WHERE pembeli='$pembeli' AND tiket='$tiket' AND jumlah='$jumlah'";
                 $result = mysqli_query($conn, $query);
                 if($result){
@@ -364,7 +364,7 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "password"=>"payPhone"
                 );
                 $data_login = json_encode($data_login);
-                $output = curl_login('https://e-money-kelompok-12.herokuapp.com/api/login', $data_login);
+                $output = curl_login_peacepay('https://e-money-kelompok-12.herokuapp.com/api/login', $data_login);
                 $jwt = json_decode($output, true);
                 $jwt = $jwt["token"];
                 
@@ -372,8 +372,8 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role
                     "amount"=>$total,
                     "tujuan"=>$telepon
                 );
-                $transfer_peace = curl_transfer('https://e-money-kelompok-12.herokuapp.com/api/transfer', json_encode($data), $jwt);
-                echo($transfer_peace);
+                $transfer_peace = curl_transfer_peacepay('https://e-money-kelompok-12.herokuapp.com/api/transfer', json_encode($data), $jwt);
+                //echo($transfer_peace);
                 $query = "UPDATE statuspengiriman set status='Pesanan selesai' WHERE pembeli='$pembeli' AND tiket='$tiket' AND jumlah='$jumlah'";
                 $result = mysqli_query($conn, $query);
                 if($result){
