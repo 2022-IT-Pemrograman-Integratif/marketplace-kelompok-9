@@ -46,7 +46,7 @@ $telepon=$data['telepon'];
 $password=$data['password'];
 $username=$data['username'];
 
-if($decoded['role'] == 'penjual' || $decoded['role'] == 'pembeli' || $decoded['role'] == "admin"){
+if($decoded['role'] == 'penjual' || $decoded['role'] == 'user' || $decoded['role'] == "admin"){
     if($tiket == NULL ||  $jumlah == NULL || $total == NULL || $emoney == NULL){
         http_response_code(401);
         echo json_encode(array(
@@ -61,7 +61,6 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'pembeli' || $decoded['r
         $row1 = mysqli_fetch_array($result1);
 
         if($row['status'] == 'Paket sedang dikirim'){
-            echo $row;
             if($emoney == 'buski'){
                 $data_login = array(
                     'username'=>'payPhone',
@@ -248,8 +247,8 @@ if($decoded['role'] == 'penjual' || $decoded['role'] == 'pembeli' || $decoded['r
                 $jwt = $jwt["Data"]["jwt"];
                 
                 $data = array(
-                    "email"=>"talangin@gmail.com",
-                    "password"=>"talangin",
+                    "email"=>"payPhone@gmail.com",
+                    "password"=>"payPhone",
                     "jwt"=>$jwt,
                     "tujuan"=>$telepon,
                     "jumlah"=>$total
