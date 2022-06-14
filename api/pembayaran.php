@@ -73,7 +73,7 @@ if($decoded['role'] == 'user'){
                 //echo $output_peacepay;
                 $jwt_peacepay = json_decode($output_peacepay, true);
                 $jwt_peacepay = $jwt_peacepay["token"];
-                echo $jwt_peacepay;
+                //echo $jwt_peacepay;
                 
                 $data_transfer_peacepay = array(
                     'tujuan'=>"081320667719",
@@ -84,7 +84,7 @@ if($decoded['role'] == 'user'){
                 echo json_encode(array(
                     "Pesan"=>"Pembayaran berhasil."
                 ));
-                echo $transfer_peacepay;
+                //echo $transfer_peacepay;
                 $query = "UPDATE statuspengiriman set status='Telah dibayar' WHERE pembeli='$pembeli' AND tiket='$tiket' AND jumlah='$jumlah'";
                 $result = mysqli_query($conn, $query);
           }else if($emoney == 'Talangin'){
@@ -131,7 +131,7 @@ if($decoded['role'] == 'user'){
                 echo json_encode(array(
                     "Pesan"=>"Pembayaran berhasil."
                 ));
-                echo $transfer_payphone;
+                //echo $transfer_payphone;
                 $query = "UPDATE statuspengiriman set status='Telah dibayar' WHERE pembeli='$pembeli' AND tiket='$tiket' AND jumlah='$jumlah'";
                 $result = mysqli_query($conn, $query);
 
@@ -166,7 +166,7 @@ if($decoded['role'] == 'user'){
                     'phone' => $telepon,
                     'password' => $password,
                 );
-                $output = curl_login_kcn('https://ecoin10.my.id/api/masuk', $data_login);
+                $output = curl_login_ecoin('https://ecoin10.my.id/api/masuk', $data_login);
                 // echo $output_buski;
                 $jwt = json_decode($output, true);
                 $jwt = $output;
@@ -179,7 +179,7 @@ if($decoded['role'] == 'user'){
                     'amount' => $jumlah,
                     'description' => 'transfer from PayPhone',
                 );
-                $transfer = curl_transfer_kcn('https://ecoin10.my.id/api/transfer', $data_transfer, $jwt);
+                $transfer = curl_transfer_ecoin('https://ecoin10.my.id/api/transfer', $data_transfer, $jwt);
                 http_response_code(200);
                 echo json_encode(array(
                     "Pesan"=>"Pembayaran berhasil."
@@ -187,7 +187,7 @@ if($decoded['role'] == 'user'){
                 //echo $transfer;
                 $query = "UPDATE statuspengiriman set status='Telah dibayar' WHERE pembeli='$pembeli' AND tiket='$tiket' AND jumlah='$jumlah'";
                 $result = mysqli_query($conn, $query);
-      }else if($emoney == 'KCN'){
+      }else if($emoney == 'kcn'){
             $data_login = array(
                 'email' => $email,
                 'password' => $password,
@@ -235,7 +235,7 @@ if($decoded['role'] == 'user'){
             //echo $transfer;
             $query = "UPDATE statuspengiriman set status='Telah dibayar' WHERE pembeli='$pembeli' AND tiket='$tiket' AND jumlah='$jumlah'";
             $result = mysqli_query($conn, $query);
-        }else if($emoney == 'cuan-ind'){
+        }else if($emoney == 'cuan'){
             $data_login = array(
                 'notelp' => $telepon,
                 'password' => $password,
@@ -313,7 +313,7 @@ if($decoded['role'] == 'user'){
             // echo $output_buski;
             $jwt_padpay = json_decode($output, true);
             $jwt_padpay = $jwt_padpay["Data"]["jwt"];
-            echo $jwt_padpay;
+            //echo $jwt_padpay;
             
             $data_transfer = array(
                 'email' => $email,
